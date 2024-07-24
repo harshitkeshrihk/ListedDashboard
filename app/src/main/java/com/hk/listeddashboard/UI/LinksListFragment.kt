@@ -22,12 +22,11 @@ class LinksListFragment : Fragment() {
 
     private var _binding: FragmentLinksListBinding? = null
     private val binding get() = _binding!!
-    private var listTop: List<TopLink> = arrayListOf()
+    private var listTop: List<TopLink>? = arrayListOf()
 
 
     private val viewModel by activityViewModels<MainViewModel>()
-
-    lateinit var linkListAdapter : LinksAdapter
+    private lateinit var linkListAdapter : LinksAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,31 +40,29 @@ class LinksListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         linkListAdapter = LinksAdapter()
+
+
+        setUpRecyclerView()
+        setObservers()
+
+    }
+
+    private fun setUpRecyclerView() {
         binding.linkslistRv.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = linkListAdapter
         }
-//        setObservers()
-        viewModel.mdata.observe(viewLifecycleOwner){
-            Log.d("hello6","hii")
-            listTop = it.data.top_links
-            if(viewModel.mlinkType.value == "Top"){
-                Log.d("hello5",listTop.toString())
-                linkListAdapter.setList(listTop)
-                linkListAdapter.notifyDataSetChanged()
-            }
-        }
-        viewModel.mlinkType.observe(viewLifecycleOwner){
-            if(it=="Top"){
-                linkListAdapter.setList(listTop)
-            }else if(it=="Recent"){
 
-            }
-        }
     }
 
-    private fun setObservers(){
 
+    private fun setObservers(){
+        viewModel.mlinkType.observe(viewLifecycleOwner){
+            listTop = viewModel.mdata.value?.data?.top_links
+            if(it=="Top" && listTop!=null) {
+                linkListAdapter.setList(listTop!!)
+            }
+        }
 
     }
 

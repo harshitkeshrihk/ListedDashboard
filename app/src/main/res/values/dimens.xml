@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <dimen name="layout_height_40">40dp</dimen>
+        <dimen name="height_24">24dp</dimen>
+        <dimen name="settings_dimen">25dp</dimen>
+        <dimen name="layout_width_40">40dp</dimen>
+        <dimen name="margin_top_20">20dp</dimen>
+        <dimen name="margin_top_40">40dp</dimen>
+        <dimen name="margin_bottom_20">20dp</dimen>
+        <dimen name="margin_left_20">20dp</dimen>
+        <dimen name="margin_right_20">20dp</dimen>
+        <dimen name="margin_2">2dp</dimen>
+        <dimen name="btnHeight">56dp</dimen>
+        <dimen name="margin_top_10">10dp</dimen>
+        <dimen name="margin_bottom_10">10dp</dimen>
+        <dimen name="margin_left_10">10dp</dimen>
+        <dimen name="margin_right_10">10dp</dimen>
+        <dimen name="large_text_size">24sp</dimen>
+        <dimen name="small_text_size_16">16sp</dimen>
+        <dimen name="small_text_size_12">12sp</dimen>
+        <dimen name="med_text_size">14sp</dimen>
+        <dimen name="settingscardCornerRadius">8dp</dimen>
+        <dimen name="cardCornerRadius_16">16dp</dimen>
+        <dimen name="cardCornerRadius_8">8dp</dimen>
+        <dimen name="cardCornerRadius_12">12dp</dimen>
+        <dimen name="padding_16">16dp</dimen>
+        <dimen name="padding_12">12dp</dimen>
+        <dimen name="chartHeight">200dp</dimen>
+        <dimen name="graphHeight">130dp</dimen>
+        <dimen name="horizontalListHeight">160dp</dimen>
+        <dimen name="strokeWidth">1dp</dimen>
+        <dimen name="text_size_18">18sp</dimen>
+        <dimen name="workInProgressIv">300dp</dimen>
+        <dimen name="cardLayout">120dp</dimen>
+</resources>

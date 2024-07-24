@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hk.listeddashboard.R
 import com.hk.listeddashboard.models.CardItem
-import com.hk.listeddashboard.models.TopLink
 
 class CardAdapter() :
     RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
@@ -34,7 +33,6 @@ class CardAdapter() :
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
         val currentItem = cardList[position]
-
         holder.imageView.setImageResource(currentItem.imageResource)
         holder.textViewTitle.text = currentItem.title
         holder.textViewSubtitle.text = currentItem.subtitle

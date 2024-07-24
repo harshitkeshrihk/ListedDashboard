@@ -8,4 +8,15 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="app_theme">#FF0E6FFF</color>
+    <color name="settingsCardBackgroundColor">#2B79ED</color>
+    <color name="cardBackgroundColor">#FFF5F5F5</color>
+    <color name="grey">#FF999CA0</color>
+    <color name="cardStrokeColor">#FFEBEBEB</color>
+    <color name="whatsappBtnColor">#01F88E</color>
+    <color name="whatsappStrokeColor">#386303</color>
+    <color name="faqBackgroudColor">#FFE8F1FF</color>
+    <color name="faqStrokeColor">#520E6FFF</color>
+    <color name="chartColor">#FF0E6FFF</color>
+    <color name="gradientStart">#FF0E6FFF</color>
+    <color name="iconBackground">#1F5C33CF</color>
 </resources>

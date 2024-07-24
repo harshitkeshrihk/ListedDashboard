@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="120dp"
-    android:layout_height="120dp"
-    android:layout_marginLeft="2dp"
-    android:layout_marginTop="2dp"
+    android:layout_width="@dimen/cardLayout"
+    android:layout_height="@dimen/cardLayout"
+    android:layout_marginLeft="@dimen/margin_2"
+    android:layout_marginTop="@dimen/margin_2"
     android:layout_marginRight="16dp"
-    android:layout_marginBottom="2dp"
+    android:layout_marginBottom="@dimen/margin_2"
     app:cardBackgroundColor="@color/white"
-    app:contentPadding="12dp"
-    app:cardCornerRadius="8dp">
+    app:contentPadding="@dimen/padding_12"
+    app:cardCornerRadius="@dimen/cardCornerRadius_8">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="160dp"
+        android:layout_width="@dimen/cardLayout"
         android:layout_height="match_parent">
 
         <androidx.cardview.widget.CardView
@@ -21,8 +21,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:cardElevation="0dp"
-            app:cardBackgroundColor="#1F5C33CF"
-            app:cardCornerRadius="12dp">
+            app:cardBackgroundColor="@color/iconBackground"
+            app:cardCornerRadius="@dimen/cardCornerRadius_12">
 
             <ImageView
                 android:id="@+id/imageView"
@@ -39,9 +39,9 @@
             android:id="@+id/textViewTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="123"
+            android:text="@string/_123"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="@dimen/small_text_size_16"
             app:layout_constraintBottom_toTopOf="@+id/textViewSubtitle"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -50,9 +50,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:text="Today's clicks"
-            android:textColor="#999CA0"
-            android:textSize="14sp"
+            android:text="@string/today_s_clicks"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/med_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

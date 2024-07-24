@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
+    android:id="@+id/scrollView3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -11,66 +12,67 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FF0E6FFF">
+        android:background="@color/app_theme">
 
 
         <LinearLayout
-            android:id="@+id/ll1"
+            android:id="@+id/linearLayout1"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="@dimen/layout_height_40"
+            android:layout_marginLeft="@dimen/margin_left_20"
+            android:layout_marginRight="@dimen/margin_right_20"
+            android:layout_marginTop="@dimen/margin_top_20"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/profileTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="Profile"
+                android:text="@string/profile"
                 android:layout_weight="10"
                 android:textColor="@color/white"
-                android:textSize="24sp"
+                android:textSize="@dimen/large_text_size"
                 android:textStyle="bold"/>
 
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                app:cardCornerRadius="8dp"
-                app:cardBackgroundColor="#2B79ED">
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/profileCv"
+                android:layout_width="@dimen/layout_width_40"
+                android:layout_height="@dimen/layout_height_40"
+                app:cardCornerRadius="@dimen/settingscardCornerRadius"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/settingsCardBackgroundColor">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="@dimen/settings_dimen"
+                    android:layout_height="@dimen/settings_dimen"
                     android:layout_weight="1"
                     android:layout_gravity="center_vertical|center_horizontal"
                     android:src="@drawable/ic_media__2_" />
 
-            </androidx.cardview.widget.CardView>
-
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="800dp"
-            android:layout_marginTop="40dp"
-            app:cardBackgroundColor="#FFF5F5F5"
-            app:cardCornerRadius="16dp"
+            android:layout_marginTop="@dimen/margin_top_40"
+            app:cardBackgroundColor="@color/cardBackgroundColor"
+            app:cardCornerRadius="@dimen/cardCornerRadius_16"
             app:cardPreventCornerOverlap="false"
-            app:cardUseCompatPadding="true"
-            app:contentPadding="16dp"
+            app:contentPadding="@dimen/padding_16"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ll1">
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="300dp"
-                android:layout_height="300dp"
+                android:layout_width="@dimen/workInProgressIv"
+                android:layout_height="@dimen/workInProgressIv"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="@dimen/margin_top_40"
                 android:src="@drawable/img_1"/>
 
         </androidx.cardview.widget.CardView>

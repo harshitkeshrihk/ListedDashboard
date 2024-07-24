@@ -15,6 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModels()
     private lateinit var sessionManager: SessionManager
@@ -22,18 +23,38 @@ class MainActivity : AppCompatActivity() {
     private val linksFragment = LinksFragment()
     private val coursesFragment = CoursesFragment()
     private val mediaFragment = MediaFragment()
-    private val profileFragemnt = ProfileFragment()
+    private val profileFragment = ProfileFragment()
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+
         sessionManager = SessionManager()
         sessionManager.saveAuthToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjU5MjcsImlhdCI6MTY3NDU1MDQ1MH0.dCkW0ox8tbjJA2GgUx2UEwNlbTZ7Rr38PVFJevYcXFI")
 
         replaceFragment(linksFragment)
         setUpButton()
+
+
+//        binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
+//            val fragment = fragments[menuItem.itemId]
+//            if (fragment != null) {
+//                replaceFragment(fragment)
+//                true
+//            } else {
+//                false
+//            }
+//        }
+
+//        binding.bottomNavigationView.selectedItemId = R.id.menu_home
+
+//        val navController = findNavController(R.id.fragmentContainerView)
+//        binding.bottomNavigationView.setupWithNavController(navController)
 
     }
 
@@ -54,7 +75,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.menu_profile -> {
-                    replaceFragment(profileFragemnt)
+                    replaceFragment(profileFragment)
                     // Handle Profile menu item click
                     true
                 }
@@ -69,5 +90,5 @@ class MainActivity : AppCompatActivity() {
                 transaction.replace(R.id.contentFrameLayout,fragment)
                 transaction.commit()
             }
-        }
+    }
 }

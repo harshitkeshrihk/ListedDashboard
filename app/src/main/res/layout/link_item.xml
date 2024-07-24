@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="140dp"
     android:layout_margin="4dp"
-    app:cardCornerRadius="8dp"
-    android:layout_marginBottom="20dp"
+    app:cardCornerRadius="@dimen/cardCornerRadius_8"
+    android:layout_marginBottom="@dimen/margin_bottom_20"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -22,8 +22,8 @@
                 android:id="@+id/appCompatImageView"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginLeft="@dimen/margin_left_10"
+                android:layout_marginTop="@dimen/margin_top_10"
                 android:src="@drawable/img"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -32,22 +32,22 @@
                 android:id="@+id/dateTv"
                 android:layout_width="wrap_content"
                 android:layout_height="18dp"
-                android:text="22 Aug 2022"
-                android:layout_marginLeft="12dp"
-                android:textColor="#999CA0"
-                android:textSize="12sp"
+                android:text="@string/_22_aug_2022"
+                android:layout_marginLeft="@dimen/margin_left_10"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/small_text_size_12"
                 app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView"
                 app:layout_constraintStart_toEndOf="@+id/appCompatImageView" />
 
             <TextView
                 android:id="@+id/titleTv"
                 android:layout_width="0dp"
-                android:layout_height="24dp"
-                android:layout_marginLeft="12dp"
+                android:layout_height="@dimen/height_24"
+                android:layout_marginLeft="@dimen/margin_left_10"
                 android:maxLines="1"
-                android:text="Sample link name..."
+                android:text="@string/sample_link_name"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textSize="@dimen/med_text_size"
                 app:layout_constraintEnd_toStartOf="@+id/countTv"
                 app:layout_constraintStart_toEndOf="@+id/appCompatImageView"
                 app:layout_constraintTop_toTopOf="@+id/appCompatImageView" />
@@ -56,23 +56,23 @@
             <TextView
                 android:id="@+id/countTv"
                 android:layout_width="wrap_content"
-                android:layout_height="24dp"
-                android:text="2323"
-                android:layout_marginRight="28dp"
-                android:layout_marginTop="12dp"
+                android:layout_height="@dimen/height_24"
+                android:text="@string/_123"
+                android:layout_marginEnd="@dimen/margin_right_20"
+                android:layout_marginTop="@dimen/margin_top_10"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textSize="@dimen/med_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/clicks"
                 android:layout_width="wrap_content"
-                android:layout_height="24dp"
-                android:text="Clicks"
-                android:textColor="#999CA0"
-                android:textSize="14sp"
-                android:layout_marginRight="28dp"
+                android:layout_height="@dimen/height_24"
+                android:text="@string/clicks"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/med_text_size"
+                android:layout_marginRight="@dimen/margin_right_20"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/countTv" />
 
@@ -82,16 +82,17 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:background="#FFE8F1FF">
+            android:background="@color/faqBackgroudColor">
 
             <TextView
                 android:id="@+id/linksTv"
                 android:layout_width="wrap_content"
-                android:layout_height="25dp"
+                android:layout_height="@dimen/height_24"
                 android:maxLines="1"
-                android:text="https://samplelink.oia.bio/ashd..."
-                android:textColor="#FF0E6FFF"
-                android:textSize="14sp"
+                android:text="@string/sample_link"
+                android:textColor="@color/app_theme"
+                android:textSize="@dimen/med_text_size"
+                android:layout_marginLeft="2dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.081"
@@ -104,7 +105,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/ic_files__1_"
-                android:layout_marginRight="12dp"
+                android:layout_marginRight="@dimen/margin_right_10"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

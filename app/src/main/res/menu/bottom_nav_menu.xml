@@ -3,12 +3,12 @@
     <item
         android:id="@+id/menu_home"
         android:icon="@drawable/ic_mail"
-        android:title="Links" />
+        android:title="@string/links" />
 
     <item
         android:id="@+id/menu_courses"
         android:icon="@drawable/ic_files"
-        android:title="Courses" />
+        android:title="@string/courses" />
 
     <item
         android:id="@+id/placeholder"
@@ -17,10 +17,10 @@
     <item
         android:id="@+id/menu_campaigns"
         android:icon="@drawable/ic_media"
-        android:title="Campaigns" />
+        android:title="@string/campaigns" />
 
     <item
         android:id="@+id/menu_profile"
         android:icon="@drawable/ic_baseline_person_outline_24"
-        android:title="Profile" />
+        android:title="@string/profile" />
 </menu>

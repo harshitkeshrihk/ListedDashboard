@@ -29,11 +29,10 @@ class LinksAdapter(): RecyclerView.Adapter<LinksAdapter.VH>() {
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         val link = list[position]
-        holder.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener {
             onItemClick?.invoke(link)
         }
-        holder.onBind(link,position)
-
+        holder.onBind(link, position)
     }
 
     override fun getItemCount(): Int {

@@ -21,6 +21,8 @@ import com.github.mikephil.charting.utils.Utils
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hk.listeddashboard.R
+import com.hk.listeddashboard.Utils.convertDateFormat
+import com.hk.listeddashboard.Utils.getDayNameFromDate
 import com.hk.listeddashboard.adapter.CardAdapter
 import com.hk.listeddashboard.adapter.MyPagerAdapter
 import com.hk.listeddashboard.databinding.FragmentLinksBinding
@@ -39,9 +41,13 @@ class LinksFragment : Fragment() {
     private lateinit var userResponse: UserResponse
     private val viewModel : MainViewModel by activityViewModels()
     private val tabTitles = arrayListOf("Top links","Recent links")
-    lateinit var cardAdapter: CardAdapter
+    private lateinit var cardAdapter: CardAdapter
     private var _binding: FragmentLinksBinding? = null
     private val binding get() = _binding!!
+
+    companion object{
+        const val TAG = "LinksFragment"
+    }
 
 
     override fun onCreateView(
@@ -56,35 +62,72 @@ class LinksFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.ss1.isEnabled = false
-
+        binding.scrollview1.isEnabled = false
         cardAdapter = CardAdapter()
+        setUpRecyclerView()
+        setUpObservers()
+        setUpTabLayoutWithViewPager()
+        setupTabLayoutListener()
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(TAG,"onPauseCalled")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG,"onStopCalled")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG,"onDestroyCalled")
+    }
+
+    private fun setUpObservers(){
+        viewModel.mdata.observe(viewLifecycleOwner){
+            userResponse = it
+            binding.progressBar.visibility = View.GONE
+            //setting up viewpager with initial top links
+            viewModel.selectType("Top")
+
+            binding.scrollview1.isEnabled = true
+
+            setUpCardData(userResponse)
+            setupLineChart(userResponse.data.overall_url_chart)
+            setData(userResponse.data.overall_url_chart)
+        }
+    }
+
+    private fun setUpCardData(userResponse: UserResponse){
+        val cardList = listOf(
+            CardItem(com.hk.listeddashboard.R.drawable.ic_software,
+                userResponse.today_clicks.toString(),
+                "Today's clicks"),
+            CardItem(com.hk.listeddashboard.R.drawable.ic_pin,
+                if(userResponse.top_location=="")  "Unavailable"
+                else  userResponse.top_location,
+                "Top Location"),
+            CardItem(com.hk.listeddashboard.R.drawable.ic_generic,
+                if(userResponse.top_source=="")  "Unavailable"
+                else  userResponse.top_source, "Top source"),
+            CardItem(com.hk.listeddashboard.R.drawable.ic_baseline_access_time_24,
+                if(userResponse.startTime=="")  "Unavailable"
+                else  userResponse.startTime, "Start Time")
+        )
+        cardAdapter.setList(cardList)
+    }
+    private fun setUpRecyclerView(){
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL, false)
             adapter = cardAdapter
         }
-        viewModel.mdata.observe(viewLifecycleOwner){
-            userResponse = it
-            binding.progressBar.visibility = View.GONE
-            binding.ss1.isEnabled = true
-            val cardList = listOf(
-                CardItem(com.hk.listeddashboard.R.drawable.ic_software, userResponse.today_clicks.toString(), "Today's clicks"),
-                CardItem(com.hk.listeddashboard.R.drawable.ic_pin, userResponse.top_location, "Top Location"),
-                CardItem(com.hk.listeddashboard.R.drawable.ic_generic, userResponse.top_source, "Top source"),
-                CardItem(com.hk.listeddashboard.R.drawable.ic_baseline_access_time_24, userResponse.startTime, "Start Time")
-            )
-            cardAdapter.setList(cardList)
-            setupLineChart(userResponse.data.overall_url_chart)
-            setData(userResponse.data.overall_url_chart)
-        }
-
-        viewModel.selectType("Top")
-
-        setUpTabLayoutWithViewPager()
-        setupTabLayoutListener()
-
     }
-
 
     private fun setUpTabLayoutWithViewPager(){
         binding.viewpager.adapter = MyPagerAdapter(this)
@@ -94,7 +137,7 @@ class LinksFragment : Fragment() {
 
         for(i in 0..1){
             val textView =
-                LayoutInflater.from(requireContext()).inflate(com.hk.listeddashboard.R.layout.tab_layout_title, null)
+                LayoutInflater.from(requireContext()).inflate(R.layout.tab_layout_title, null)
                         as TextView
             binding.tablayout.getTabAt(i)?.customView = textView
         }
@@ -107,7 +150,6 @@ class LinksFragment : Fragment() {
                 when(tab?.position){
                     0-> {
                         viewModel.selectType("Top")
-                        Log.d("hello2",viewModel.mlinkType.value.toString())
                     }
                     1-> {
                         viewModel.selectType("Recent")
@@ -132,8 +174,14 @@ class LinksFragment : Fragment() {
         xAxis.setCenterAxisLabels(true)
         xAxis.valueFormatter = IndexAxisValueFormatter(getXAxisValues(overallUrlChart))
 
+
         val rightAxis: YAxis = binding.lineChart.axisRight
         rightAxis.isEnabled = false // Hide right-hand side scaling
+
+
+//        val leftAxis: YAxis = binding.lineChart.axisLeft
+//        leftAxis.axisMinimum = 0f // Set the minimum value to 0 to ensure only positive values
+
 
         binding.lineChart.description.isEnabled = false
         binding.lineChart.legend.isEnabled = false
@@ -142,7 +190,7 @@ class LinksFragment : Fragment() {
     private fun setData(overallUrlChart: OverallUrlChart) {
         val entries: ArrayList<Entry> = ArrayList()
         val dataClass = overallUrlChart
-//
+
         val fields = dataClass.javaClass.declaredFields
         for (i in fields.indices) {
             fields[i].isAccessible = true
@@ -176,7 +224,6 @@ class LinksFragment : Fragment() {
         val dataClass = overallUrlChart
         val fields = dataClass.javaClass.declaredFields
         for (field in fields) {
-            Log.d("chartCheck",field.name.toString())
             xAxisValues.add(getDayNameFromDate(field.name))
         }
 
@@ -185,36 +232,4 @@ class LinksFragment : Fragment() {
 
         return xAxisValues
     }
-
-    fun getDayNameFromDate(dateString: String): String {
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        val date = dateFormat.parse(dateString)
-
-        val calendar = Calendar.getInstance()
-        calendar.time = date
-
-        val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
-
-        // Map the day of week value to its corresponding name
-        val dayNames = arrayOf("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat")
-
-        return dayNames[dayOfWeek - 1]
-    }
-
-    fun convertDateFormat(inputDate: String): String {
-        val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        val outputFormat = SimpleDateFormat("dd MMM", Locale.getDefault())
-
-        return try {
-            val date = inputFormat.parse(inputDate)
-            outputFormat.format(date)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            ""
-        }
-    }
-
-
-
-
 }

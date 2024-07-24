@@ -2,4 +2,24 @@
     <string name="app_name">ListedDashboard</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="goodMorning">Good Morning</string>
+    <string name="name">Ajay Manva</string>
+    <string name="overView">Overview</string>
+    <string name="dates">22 Aug - 23 Sept</string>
+    <string name="view_analytics">View Analytics</string>
+    <string name="view_all_links">View all Links</string>
+    <string name="talk_with_us">Talk with us</string>
+    <string name="frequently_asked_questions">Frequently Asked Questions</string>
+    <string name="campaigns">Campaigns</string>
+    <string name="profile">Profile</string>
+    <string name="courses">Courses</string>
+    <string name="tablayout">TabLayout</string>
+    <string name="_22_aug_2022">22 Aug 2022</string>
+    <string name="clicks">Clicks</string>
+    <string name="sample_link_name">Sample link name...</string>
+    <string name="sample_link">https://samplelink.oia.bio/ashd...</string>
+    <string name="today_s_clicks">Today\'s clicks</string>
+    <string name="_123">123</string>
+    <string name="links">Links</string>
 </resources>
