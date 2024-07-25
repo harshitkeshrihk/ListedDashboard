@@ -50,5 +50,11 @@ object RetrofitModule {
     fun provideApiService(retrofit: Retrofit): NetworkService {
         return retrofit.create(NetworkService::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun provideSessionManager(): SessionManager{
+        return SessionManager()
+    }
 }
 

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -45,9 +46,6 @@ class LinksFragment : Fragment() {
     private var _binding: FragmentLinksBinding? = null
     private val binding get() = _binding!!
 
-    companion object{
-        const val TAG = "LinksFragment"
-    }
 
 
     override fun onCreateView(
@@ -62,45 +60,26 @@ class LinksFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.scrollview1.isEnabled = false
         cardAdapter = CardAdapter()
+
+        if (viewModel.mdata.value != null) {
+            userResponse = viewModel.mdata.value!!
+            updateUI(userResponse)
+        } else {
+            setUpObservers()
+        }
+
         setUpRecyclerView()
-        setUpObservers()
         setUpTabLayoutWithViewPager()
         setupTabLayoutListener()
-    }
 
-    override fun onResume() {
-        super.onResume()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d(TAG,"onPauseCalled")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d(TAG,"onStopCalled")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d(TAG,"onDestroyCalled")
+        workInProgressUI()
     }
 
     private fun setUpObservers(){
         viewModel.mdata.observe(viewLifecycleOwner){
             userResponse = it
-            binding.progressBar.visibility = View.GONE
-            //setting up viewpager with initial top links
-            viewModel.selectType("Top")
-
-            binding.scrollview1.isEnabled = true
-
-            setUpCardData(userResponse)
-            setupLineChart(userResponse.data.overall_url_chart)
-            setData(userResponse.data.overall_url_chart)
+            updateUI(userResponse)
         }
     }
 
@@ -223,13 +202,54 @@ class LinksFragment : Fragment() {
         val xAxisValues: MutableList<String> = ArrayList()
         val dataClass = overallUrlChart
         val fields = dataClass.javaClass.declaredFields
-        for (field in fields) {
-            xAxisValues.add(getDayNameFromDate(field.name))
-        }
+            for (field in fields) {
+                xAxisValues.add(getDayNameFromDate(field.name))
+            }
+
 
         var s: String = convertDateFormat(fields[0].name)  + "-" +  convertDateFormat(fields[fields.size-1].name)
         binding.datestartTv.text = s
 
         return xAxisValues
+    }
+
+    private fun updateUI(userResponse: UserResponse) {
+        //setting up viewpager with initial top links
+        viewModel.selectType("Top")
+        binding.progressBar.visibility = View.GONE
+        setUpCardData(userResponse)
+        if(userResponse.data.overall_url_chart!=null){
+            setupLineChart(userResponse.data.overall_url_chart)
+            setData(userResponse.data.overall_url_chart)
+        }
+    }
+
+    private fun showToastWIP(){
+        Toast.makeText(requireContext(),"Work In Progress",Toast.LENGTH_SHORT).show()
+    }
+
+    private fun workInProgressUI(){
+        binding.settingsCv.setOnClickListener{
+            showToastWIP()
+        }
+        binding.viewAnalyticsBtn.setOnClickListener{
+            showToastWIP()
+        }
+        binding.talkWithUs.setOnClickListener{
+            showToastWIP()
+        }
+        binding.frequentlyAQ.setOnClickListener{
+            showToastWIP()
+        }
+        binding.viewAllLinks.setOnClickListener{
+            showToastWIP()
+        }
+        binding.searchCv.setOnClickListener{
+            showToastWIP()
+        }
+    }
+
+    companion object {
+        const val TAG = "LinksFragment"
     }
 }

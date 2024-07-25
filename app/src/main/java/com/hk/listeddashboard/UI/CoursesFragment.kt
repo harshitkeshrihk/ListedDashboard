@@ -17,9 +17,7 @@ class CoursesFragment : Fragment() {
     private var _binding: FragmentCoursesBinding? = null
     private val binding get() = _binding!!
 
-    companion object{
-        const val TAG = "CourseFragment"
-    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,27 +30,11 @@ class CoursesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d(TAG,"onViewCreatedCalled")
     }
 
-    override fun onResume() {
-        super.onResume()
-        Log.d(TAG,"onResumeCalled")
-    }
 
-    override fun onPause() {
-        super.onPause()
-        Log.d(TAG,"onPauseCalled")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d(TAG,"onStopCalled")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d(TAG,"onDestroyCalled")
+    companion object {
+        const val TAG = "CourseFragment"
     }
 
 }

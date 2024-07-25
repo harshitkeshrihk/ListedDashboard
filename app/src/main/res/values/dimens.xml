@@ -32,4 +32,5 @@
         <dimen name="text_size_18">18sp</dimen>
         <dimen name="workInProgressIv">300dp</dimen>
         <dimen name="cardLayout">120dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>
